@@ -1,0 +1,22 @@
+{% extends 'basic_app/basic_app_baselogin.html' %}
+{% block new_block %}
+
+<div class="container jumbotron">
+    {% comment %} <h1>Welcome Back</h1>
+    <h2>@{{user.username}}</h2> {% endcomment %}
+    <h1 >Groups</h1>
+    <p> Welcome to the groups page! Select a group with shared interest!</p>
+    <button class="btn btn-primary" type="button"><a href="{% url 'basic_app:newgroup' %}" style="color: white;">Create New Group</a></button>
+</div>
+    
+    <ol style="margin-left: 25px;">
+        <!-- groups is defined in GroupListView -->
+        {% for group in groups %}
+        <h2><li><a href="{% url 'basic_app:join' pk=group.pk %}" ">{{ group.name }}</a></li></h2>
+        <p style="font-size: 1.3em;"><span style="font-weight: 600;">Description:</span> {{ group.description }}</p>
+        <h5 style="font-size: 1.3em;"><span style="font-weight: 600;">Member Count:</span> {{ group.member_count }}</h5>
+        <h5 style="font-size: 1.3em;"><span style="font-weight: 600;">Post Count:</span> {{ group.post_count }}</h5>
+        <hr style="color: black;">
+        {% endfor %} 
+    </ol>
+{% endblock  %}

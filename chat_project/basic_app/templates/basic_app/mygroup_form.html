@@ -1,0 +1,11 @@
+{% extends 'basic_app/basic_app_baselogin.html' %}
+{% block new_block %}
+<h2>Create A New Group</h2>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <br>
+    <input type="submit" class="btn btn-primary" value="Create">
+</form>
+{% endblock  %}

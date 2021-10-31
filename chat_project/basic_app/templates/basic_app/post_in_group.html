@@ -1,0 +1,18 @@
+{% extends 'basic_app/basic_app_baselogin.html' %}
+{% block new_block %}
+<h1 style="font-weight: 600; color: #D0115f;">My Posts in {{group_detail.name}} -</h1>
+<br>
+<ol>
+    {% for post in group_detail.posts.all %}
+        {% if post.created_by == user.username %}
+                <br>
+                <h3><li style="font-weight: 600;">{{post.mssg}}</li></h3>
+            <!-- <h4>{{user.username}}</h4> {{post.published|date:"D M Y"}}-->
+            <h4>{{user.username}}</h4>
+            <p><a href="{% url 'basic_app:curruserpost' pk=post.pk %}">@{{post.created_by}} </a>{{post.published_date}} in <a href="{% url 'basic_app:join' pk=group_detail.pk %}">{{group_detail.name}}</a></p>
+            <button class="btn btn-danger" type="button"><a href="{% url 'basic_app:deletepost' pk=post.pk %}" style="color: white; text-decoration: none;">Delete</a></button>
+            <hr>
+        {% endif %}
+    {% endfor %}
+</ol>
+{% endblock %}

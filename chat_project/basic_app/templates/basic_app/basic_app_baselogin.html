@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <title>Base2</title>
+</head>
+<body>
+    {% comment %} <nav class="navbar navbar-default navbar-static-top">
+        <ul class="nav navbar-nav">
+            <!-- basic_app:list-> utilises the list view to display a list of schools -->
+            <li><a class="navbar-brand bigbrand" href="{% url 'basic_app:user' %}">Star Social</a></li>
+            <li><a class="navbar-brand" href="{% url 'basic_app:newpost' %}">Post</a></li>
+            <li><a class="navbar-brand" href="{% url 'basic_app:groups' %}">Groups</a></li>
+            <li><a class="navbar-brand" href="{% url 'basic_app:newgroup' %}">Create Group</a></li>
+            <li><a class="navbar-brand" href="{% url 'basic_app:logout' %}">Logout</a></li>
+        </ul>
+    </nav> {% endcomment %}
+
+    <nav class="navbar navbar-default navbar-static-top text-right">
+        <a class="navbar-brand" href="{% url 'basic_app:user' %}">Star Social</a>
+      <a href="{% url 'basic_app:newpost' %}"><button type="button" class="btn btn-default navbar-btn" style="margin: 8px 8px;">Post</button></a>
+      <a href="{% url 'basic_app:groups' %}"><button type="button" class="btn btn-default navbar-btn" style="margin: 8px 8px;">Groups</button></a>
+      <a href="{% url 'basic_app:newgroup' %}"><button type="button" class="btn btn-default navbar-btn" style="margin: 8px 8px;">Create Group</button></a>
+      <a href="{% url 'basic_app:logout' %}"><button type="button" class="btn btn-default navbar-btn" style="margin: 8px 8px;">Logout</button></a>
+    </nav>
+
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+            
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% block new_block %}
+        {% endblock %}
+    </div>
+</body>
+</html>

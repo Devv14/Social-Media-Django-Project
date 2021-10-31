@@ -1,0 +1,5 @@
+{% extends 'basic_app/basic_app_baselogin.html' %}
+{% block new_block %}
+<h2>You are now logged in!</h2>
+<h3><a href="{% url 'basic_app:groups' %}">Go To Groups</a></h3>
+{% endblock  %}

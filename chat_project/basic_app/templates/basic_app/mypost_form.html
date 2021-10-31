@@ -1,0 +1,11 @@
+{% extends 'basic_app/basic_app_baselogin.html' %}
+{% block new_block %}
+<h2 >Create New Post</h2>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <br>
+    <input type="submit" class="btn btn-primary" value="Post">
+</form>
+{% endblock  %}

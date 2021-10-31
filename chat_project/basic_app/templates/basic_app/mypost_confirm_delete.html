@@ -1,0 +1,17 @@
+{% extends 'basic_app/basic_app_baselogin.html' %}
+{% block new_block %}
+<div class="jumbotron">
+    <h2 style="font-weight: 600">Are you sure you want to delete this post?</h2>
+    <h2>{{post.mssg}}</h2>
+    <h4>{{post.created_by}}</h4>
+    <h4><a href="{% url 'basic_app:curruserpost' pk=post.pk %}">@{{post.created_by}} </a>{{post.published_date}} in <a href="{% url 'basic_app:join' pk=post.group.pk %}">{{post.group}}</a></h4>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-danger" value="Confirm Delete">
+        <!-- we are grabbing the pk of the school context object that is returned same for name above -->
+        <a href="{% url 'basic_app:postsingroup' pk=post.group.pk %}" style="color: white; text-decoration: none;"><button class="btn btn-info" type="button">Cancel</button></a>
+    </form>
+</div>
+{% endblock %}

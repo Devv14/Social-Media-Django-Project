@@ -1,0 +1,20 @@
+{% extends "basic_app/basic_app_base.html" %}
+
+{% block body_block %}
+
+<h1>
+    Sign Up
+</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+<form>
+    
+    
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+
+
+{% endblock  %}

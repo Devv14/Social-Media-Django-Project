@@ -1,0 +1,37 @@
+{% extends 'basic_app/basic_app_baselogin.html' %}
+{% block new_block %}
+
+<div class="jumbotron">
+    <h1 style="font-weight: 600; color:#3F1046;">{{group_detail.name}}!</h1>
+    <h2>Member Count: {{group_detail.member_count}}</h2>
+    {% if user.username in group_detail.add_string %}
+    {% if user.username in group_detail.remove_string %}
+        <div class="container">
+        <p><a class="btn btn-success" href="{% url 'basic_app:leave' pk=group_detail.pk %}">Join</a></p>
+    </div>
+    {% else %}
+        <div class="container">
+            <p><a class="btn btn-danger" href="{% url 'basic_app:joinback' pk=group_detail.pk %}">Leave</a></p>
+        </div>
+    {% endif %}
+    {% else %}
+    <div class="container">
+        <p><a class="btn btn-success" href="{% url 'basic_app:leave' pk=group_detail.pk %}">Join</a></p>
+    </div>
+    {% endif %}
+    {% if group_detail.posts.all.first is not None %}
+        <h3 style="color: #3F1046;">Posts:-</h3>
+        {% for currpost in group_detail.posts.all %}
+            <br>
+            <h3 style="font-weight: 600;">{{currpost.mssg}}</h3>
+            <h4>{{currpost.created_by}}</h4>
+            <h5><a href="{% url 'basic_app:curruserpost' pk=currpost.pk %}">@{{currpost.created_by}}</a> {{currpost.published_date}} in <a href="{% url 'basic_app:join' pk=group_detail.pk %}">{{group_detail.name}}</a></h5>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <br>
+        <h4>No posts in this group yet!</h4>
+    {% endif %}
+</div>
+
+{% endblock  %}

@@ -1,0 +1,31 @@
+{% extends 'basic_app/basic_app_baselogin.html' %}
+{% block new_block %}
+<div class="jumbotron">
+    <h1 style="color: #D0115f;">@{{postcreator}}</h1>
+    <br>
+    <h2 style="margin: 10px;">Post History</h2>
+</div>
+{% comment %} {% for group_detail in groups %}
+    {% if group_detail.posts.all.first is not None %}
+        
+    {% endif %}
+{%endfor%} {% endcomment %}
+<div class="conatainer" style="margin-left: 60px;">
+{% for post in list %}
+    {% comment %} {% if post.created_by == user.username %} {% endcomment %}
+    <br>
+    <h2>{{post.mssg}}</h2>
+    <h4>{{post.created_by}}</h4>
+    <h5><a href="{% url 'basic_app:curruserpost' pk=post.pk %}">@{{postcreator}}</a> {{post.published_date}} in <a href="{% url 'basic_app:join' pk=post.group.pk %}">{{post.group}}</a></h5>
+
+    {% if post.created_by == user.username %}
+        <br>
+        <button class="btn btn-danger" type="button"><a href="{% url 'basic_app:deletepost' pk=post.pk %}" style="color: white;">Delete</a></button>
+    {% endif %}
+
+    <hr>
+    {% comment %} {% endif %} {% endcomment %}
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body_block %}
+<h1 style="font-size: 3em;">List Of Groups</h1>
+<br>
+<ol>
+    {% for group in groups %}
+        <h3 style="font-weight: 600; color:#0055b3;"><li>{{group.name}}</li></h3>
+        <p><span style="font-weight: 600;">Description:</span> {{group.description}}</p>
+        <p><span style="font-weight: 600;">Member Count:</span> {{group.member_count}}</p>
+        <p><span style="font-weight: 600;">Post Count:</span> {{group.post_count}}</p>
+        <hr>
+    {% endfor %}
+</ol>
+{% endblock %}

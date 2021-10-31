@@ -1,0 +1,23 @@
+{% extends 'basic_app/basic_app_baselogin.html' %}
+{% block new_block %}
+<h1 style="font-weight: 600; color: orange;">All Posts -</h1>
+
+<ol>
+{% for group_detail in groups %}
+    {% if group_detail.posts.all.first is not None %}
+        {% for post in group_detail.posts.all %}
+            <br>
+            <h3 style="font-weight: 600;"><li>{{post.mssg}}</li></h3>
+            <h4>{{post.created_by}}</h4>
+            <h5><a href="{% url 'basic_app:curruserpost' pk=post.pk %}">@{{post.created_by}}</a> {{post.published_date}} in <a href="{% url 'basic_app:join' pk=group_detail.pk %}">{{group_detail.name}}</a></h5>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <br>
+        <h2>No posts in <a href="{% url 'basic_app:join' pk=group_detail.pk %}">{{group_detail.name}}!</a></h2>
+        <br>
+        <hr>
+    {% endif %}
+{%endfor%}
+</ol>
+{% endblock %}
